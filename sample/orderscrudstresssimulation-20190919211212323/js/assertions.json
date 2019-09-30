@@ -1,0 +1,10 @@
+{
+  "simulation": "org.folio.mod_orders.OrdersCrudStressSimulation",
+  "simulationId": "orderscrudstresssimulation",
+  "start": 1568927532323,
+  "description": "",
+  "scenarios": ["Orders CRUD"],
+  "assertions": [
+
+  ]
+}
