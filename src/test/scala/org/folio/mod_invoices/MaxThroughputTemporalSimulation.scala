@@ -22,7 +22,11 @@ class MaxThroughputTemporalSimulation extends Simulation {
 
   val crud_scn = scenario("Temporal Invoices CRUD simulation")
     .during(duration) {
-    exec(post).exec(put).exec(get).exec(delete)
+    exec(post_invoice).exec(post_invoice_line).exec(post_invoice_document)
+      .exec(get_invoice).exec(get_invoice_line).exec(get_invoice_document)
+      .exec(put_invoice).exec(put_invoice_line)
+      .exec(get_invoices_collection).exec(get_invoice_lines_collection).exec(get_invoice_documents_collection)
+      .exec(delete_invoice_line).exec(delete_invoice_document).exec(delete_invoice)
   }
 
   setUp(crud_scn.inject(atOnceUsers(25))).protocols(https)
