@@ -118,7 +118,7 @@ object InvoicesCrudHelper {
     .put("/invoice/invoices/${invoiceId}")
     .header("x-okapi-token", x_okapi_token)
     .body(StringBody(_ =>
-      Json.stringify(invoice_body.as[JsObject] ++ Json.obj("folioInvoiceNo" -> SimulationHelper.getRandomAlphaNumericString(10))))
+      Json.stringify(invoice_body.as[JsObject] ++ Json.obj("status" -> "Approved")))
     ).asJson
     .check(status is 204)
   )
@@ -127,7 +127,7 @@ object InvoicesCrudHelper {
     .put("/invoice/invoice-lines/${invoiceLineId}")
     .header("x-okapi-token", x_okapi_token)
     .body(StringBody(session =>
-      Json.stringify(invoice_line_body.as[JsObject] ++ Json.obj("quantity" -> 5) ++ Json.obj("invoiceId" -> (session("invoiceId").as[String]))))
+      Json.stringify(invoice_line_body.as[JsObject] ++ Json.obj("subscriptionInfo" -> "-----------") ++ Json.obj("invoiceId" -> (session("invoiceId").as[String]))))
     ).asJson
     .check(status is 204)
   )
