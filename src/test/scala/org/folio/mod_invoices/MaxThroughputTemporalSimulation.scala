@@ -24,7 +24,7 @@ class MaxThroughputTemporalSimulation extends Simulation {
     .during(duration) {
     exec(post_invoice).exec(post_invoice_line).exec(post_invoice_document)
       .exec(get_invoice).exec(get_invoice_line).exec(get_invoice_document)
-      .exec(put_invoice)
+      .exec(approve_invoice).exec(pay_invoice)
       .exec(get_invoices_collection).exec(get_invoice_lines_collection).exec(get_invoice_documents_collection)
       .exec(delete_invoice_line).exec(delete_invoice_document)
   }

@@ -114,11 +114,20 @@ object InvoicesCrudHelper {
 
   // ----------------------------------- PUT Invoice, Invoice-Line -----------------------------------
 
-  val put_invoice = exec(http("PUT Invoice")
+  val approve_invoice = exec(http("PUT Invoice (Approve)")
     .put("/invoice/invoices/${invoiceId}")
     .header("x-okapi-token", x_okapi_token)
     .body(StringBody(_ =>
       Json.stringify(invoice_body.as[JsObject] ++ Json.obj("status" -> "Approved")))
+    ).asJson
+    .check(status is 204)
+  )
+
+  val pay_invoice = exec(http("PUT Invoice (Pay)")
+    .put("/invoice/invoices/${invoiceId}")
+    .header("x-okapi-token", x_okapi_token)
+    .body(StringBody(_ =>
+      Json.stringify(invoice_body.as[JsObject] ++ Json.obj("status" -> "Paid")))
     ).asJson
     .check(status is 204)
   )

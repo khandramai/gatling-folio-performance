@@ -18,7 +18,7 @@ class OpenModelSimulation extends Simulation {
   val users = config.getInt("users")
   val period = config.getInt("period")
 
-  val crud_scn = scenario("Open model Orders CRUD simulation").exec(post_invoice).exec(put_invoice).exec(get_invoice).exec(delete_invoice)
+  val crud_scn = scenario("Open model Orders CRUD simulation").exec(post_invoice).exec(approve_invoice).exec(get_invoice).exec(delete_invoice)
 
   setUp(crud_scn.inject(constantUsersPerSec(5) during period)).protocols(https)
 
